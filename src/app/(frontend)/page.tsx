@@ -10,6 +10,7 @@ import {
   CardFooter,
   Divider,
   Link,
+  Button,
   Image as HeroUiImage,
 } from '@heroui/react'
 
@@ -25,72 +26,93 @@ export default async function HomePage() {
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   return (
-    <div className="flex flex-col justify-between items-center h-screen p-12 max-w-full mx-auto overflow-hidden bg-black text-white">
-      <div className="flex flex-col items-center justify-center flex-grow">
-        <picture>
-          <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg" />
-          <Image
-            alt="Payload Logo"
-            height={65}
-            src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg"
-            width={65}
-          />
-        </picture>
-        {!user && (
-          <h1 className="my-10 text-4xl font-bold text-center">Welcome to your new project.</h1>
-        )}
-        {user && (
-          <h1 className="my-10 text-4xl font-bold text-center">Welcome back, {user.email}</h1>
-        )}
-        <div className="flex items-center gap-3">
-          <a
-            className="text-black bg-white border border-black px-2 py-1 rounded"
-            href={payloadConfig.routes.admin}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Go to admin panel
-          </a>
-          <a
-            className="text-white bg-black border border-white px-2 py-1 rounded"
-            href="https://payloadcms.com/docs"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Documentation
-          </a>
-        </div>
-        <Card className="max-w-[400px] mt-4 bg-slate-800 text-white">
-          <CardHeader className="flex gap-3">
-            <HeroUiImage
-              alt="heroui logo"
-              height={40}
-              radius="sm"
-              src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-              width={40}
-            />
-            <div className="flex flex-col">
-              <p className="text-md">HeroUI</p>
-              <p className="text-small text-default-400">heroui.com</p>
-            </div>
+    <div className="flex flex-col h-screen h-max-auto max-w-full items-center justify-center overflow-hidden bg-black text-white">
+      <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
+        <Card className="col-span-12 sm:col-span-4 h-[300px]">
+          <CardHeader className="absolute z-10 top-1 flex-col items-start!">
+            <p className="text-tiny text-white/60 uppercase font-bold">What to watch</p>
+            <h4 className="text-white font-medium text-large">Stream the Acme event</h4>
           </CardHeader>
-          <Divider />
-          <CardBody>
-            <p>Prueba completa de PayloadCMS con Heroui + Tailwindcss</p>
-          </CardBody>
-          <Divider />
-          <CardFooter>
-            <Link isExternal showAnchorIcon href="https://github.com/heroui-inc/heroui">
-              Visit source code on GitHub.
-            </Link>
+          <HeroUiImage
+            removeWrapper
+            alt="Card background"
+            className="z-0 w-full h-full object-cover"
+            src="https://heroui.com/images/card-example-4.jpeg"
+          />
+        </Card>
+        <Card className="col-span-12 sm:col-span-4 h-[300px]">
+          <CardHeader className="absolute z-10 top-1 flex-col items-start!">
+            <p className="text-tiny text-white/60 uppercase font-bold">Plant a tree</p>
+            <h4 className="text-white font-medium text-large">Contribute to the planet</h4>
+          </CardHeader>
+          <HeroUiImage
+            removeWrapper
+            alt="Card background"
+            className="z-0 w-full h-full object-cover"
+            src="https://heroui.com/images/card-example-3.jpeg"
+          />
+        </Card>
+        <Card className="col-span-12 sm:col-span-4 h-[300px]">
+          <CardHeader className="absolute z-10 top-1 flex-col items-start!">
+            <p className="text-tiny text-white/60 uppercase font-bold">Supercharged</p>
+            <h4 className="text-white font-medium text-large">Creates beauty like a beast</h4>
+          </CardHeader>
+          <HeroUiImage
+            removeWrapper
+            alt="Card background"
+            className="z-0 w-full h-full object-cover"
+            src="https://heroui.com/images/card-example-2.jpeg"
+          />
+        </Card>
+        <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
+          <CardHeader className="absolute z-10 top-1 flex-col items-start">
+            <p className="text-tiny text-white/60 uppercase font-bold">New</p>
+            <h4 className="text-black font-medium text-2xl">Acme camera</h4>
+          </CardHeader>
+          <HeroUiImage
+            removeWrapper
+            alt="Card example background"
+            className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
+            src="https://heroui.com/images/card-example-6.jpeg"
+          />
+          <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
+            <div>
+              <p className="text-black text-tiny">Available soon.</p>
+              <p className="text-black text-tiny">Get notified.</p>
+            </div>
+            <Button className="text-tiny" color="primary" radius="full" size="sm">
+              Notify Me
+            </Button>
           </CardFooter>
         </Card>
-      </div>
-      <div className="flex items-center gap-2 flex-col md:flex-row">
-        <p className="m-0">Update this page by editing</p>
-        <a className="text-white bg-gray-700 px-2 py-1 rounded" href={fileURL}>
-          <code>app/(frontend)/page.tsx</code>
-        </a>
+        <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
+          <CardHeader className="absolute z-10 top-1 flex-col items-start">
+            <p className="text-tiny text-white/60 uppercase font-bold">Your day your way</p>
+            <h4 className="text-white/90 font-medium text-xl">Your checklist for better sleep</h4>
+          </CardHeader>
+          <HeroUiImage
+            removeWrapper
+            alt="Relaxing app background"
+            className="z-0 w-full h-full object-cover"
+            src="https://heroui.com/images/card-example-5.jpeg"
+          />
+          <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+            <div className="flex grow gap-2 items-center">
+              <HeroUiImage
+                alt="Breathing app icon"
+                className="rounded-full w-10 h-11 bg-black"
+                src="https://heroui.com/images/breathing-app-icon.jpeg"
+              />
+              <div className="flex flex-col">
+                <p className="text-tiny text-white/60">Breathing App</p>
+                <p className="text-tiny text-white/60">Get a good night&#39;s sleep.</p>
+              </div>
+            </div>
+            <Button radius="full" size="sm">
+              Get App
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     </div>
   )

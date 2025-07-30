@@ -29,40 +29,43 @@ export default async function Navbar() {
   const payloadConfig = await config
 
   return (
-    <HeroUINavbar className="bg-zinc-900 text-white">
-      <NavbarBrand>
-        <AcmeLogo />
-        <p className="font-bold">ACME</p>
-      </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link className="text-yellow-600" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link className="text-orange-800" aria-current="page" href="#">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link className="text-orange-800" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link className="text-orange-800" href="https://payloadcms.com/docs" target="_blank">
-            docs
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="success" href={payloadConfig.routes.admin} variant="flat">
-            Admin
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
-    </HeroUINavbar>
+    <>
+      <HeroUINavbar className="bg-zinc-900 text-white">
+        <NavbarBrand>
+          <AcmeLogo />
+          <p className="font-bold">ACME</p>
+        </NavbarBrand>
+        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+          <NavbarItem>
+            <Link className="text-yellow-600" href="#">
+              Features
+            </Link>
+          </NavbarItem>
+          <NavbarItem isActive>
+            <Link className="text-orange-800" aria-current="page" href="#">
+              Customers
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link className="text-orange-800" href="#">
+              Integrations
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link className="text-orange-800" href="https://payloadcms.com/docs" target="_blank">
+              docs
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Button as={Link} color="success" href={payloadConfig.routes.admin} variant="flat">
+              Admin
+            </Button>
+          </NavbarItem>
+        </NavbarContent>
+      </HeroUINavbar>
+      <div></div>
+    </>
   )
 }

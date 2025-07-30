@@ -11,6 +11,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Authors } from './collections/Authors'
 import { Posts } from './collections/Posts'
+import brevoAdapter from './utils/brevoAdapter'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -22,6 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  email: brevoAdapter(),
   collections: [Users, Media, Authors, Posts],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

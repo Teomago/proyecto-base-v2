@@ -5,7 +5,7 @@ import Navbar from './components/navbar'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: 'Proyecto base V2',
 }
 
 export const AcmeLogo = () => {

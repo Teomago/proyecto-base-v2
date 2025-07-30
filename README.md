@@ -245,6 +245,92 @@ Para utilizar HeroUI dentro de tu aplicación, sigue estos pasos adicionales:
 
 Estos pasos aseguran la correcta integración y uso de HeroUI en tu aplicación.
 
+### Configuración de Correo con Brevo
+
+Para implementar la funcionalidad de envío de correos electrónicos utilizando Brevo, sigue estos pasos:
+
+1. **Configuración de variables de entorno**:
+   En el archivo `.env` del proyecto, agrega las siguientes variables de entorno necesarias para la integración con Brevo:
+   ```properties
+   BREVO_API_KEY=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
+   BREVO_EMAILS_ACTIVE=true
+   BREVO_SENDER_NAME=Teomago
+   BREVO_SENDER_EMAIL=teo.ibagon@gmail.com
+   ```
+   - **BREVO_API_KEY**: La clave API proporcionada por Brevo para autenticar las solicitudes.
+   - **BREVO_EMAILS_ACTIVE**: Controla si el envío de correos está habilitado o no.
+   - **BREVO_SENDER_NAME**: Nombre del remitente que aparecerá en los correos enviados.
+   - **BREVO_SENDER_EMAIL**: Dirección de correo electrónico del remitente.
+
+2. **Creación del archivo `brevoAdapter.ts`**:
+   - Dentro de la carpeta `utils`, crea un archivo llamado `brevoAdapter.ts`.
+   - Este archivo contiene la configuración personalizada para enviar correos electrónicos utilizando la API de Brevo.
+
+   **Descripción del archivo `brevoAdapter.ts`**:
+   - Este archivo implementa un adaptador de correo compatible con Payload CMS.
+   - Utiliza la biblioteca `axios` para realizar solicitudes HTTP a la API de Brevo.
+   - Configura el remitente, destinatario, asunto y contenido del correo.
+   - Incluye manejo de errores y un control para deshabilitar el envío de correos en entornos de desarrollo.
+
+   **Ejemplo de configuración en `brevoAdapter.ts`**:
+   ```typescript
+   import axios from 'axios'
+   import { EmailAdapter, SendEmailOptions } from 'payload'
+
+   const brevoAdapter = (): EmailAdapter => {
+     const adapter = () => ({
+       name: 'Brevo',
+       defaultFromAddress: process.env.BREVO_SENDER_EMAIL as string,
+       defaultFromName: process.env.BREVO_SENDER_NAME as string,
+       sendEmail: async (message: SendEmailOptions): Promise<unknown> => {
+         if (!process.env.BREVO_EMAILS_ACTIVE) {
+           console.log('Emails disabled, logging to console')
+           console.log(message)
+           return
+         }
+         try {
+           const res = await axios({
+             method: 'post',
+             url: 'https://api.brevo.com/v3/smtp/email',
+             headers: {
+               'api-key': process.env.BREVO_API_KEY as string,
+               'Content-Type': 'application/json',
+               Accept: 'application/json',
+             },
+             data: {
+               sender: {
+                 name: process.env.BREVO_SENDER_NAME as string,
+                 email: process.env.BREVO_SENDER_EMAIL as string,
+               },
+               to: [
+                 {
+                   email: message.to,
+                 },
+               ],
+               subject: message.subject,
+               htmlContent: message.html,
+             },
+           })
+
+           console.log('Email sent successfully')
+           return res.data
+         } catch (error) {
+           console.error('Error sending email with Brevo:', error)
+           throw error
+         }
+       },
+     })
+
+     return adapter
+   }
+
+   export default brevoAdapter
+   ```
+
+   Este adaptador se puede integrar con Payload CMS para manejar el envío de correos electrónicos de manera eficiente.
+
+Estos pasos aseguran que la funcionalidad de envío de correos esté correctamente configurada y lista para ser utilizada en el proyecto.
+
 ### Mantenimiento y Actualización de la Aplicación
 
 Para mantener la aplicación al día desde la instalación, sigue estos pasos:
