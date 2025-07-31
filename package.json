@@ -18,8 +18,11 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
+    "@heroui/accordion": "^2.2.21",
     "@heroui/navbar": "^2.2.21",
-    "@heroui/react": "^2.8.1",
+    "@heroui/react": "^2.8.2",
+    "@heroui/system": "2.4.20",
+    "@heroui/theme": "2.4.20",
     "@payloadcms/db-mongodb": "3.48.0",
     "@payloadcms/next": "3.48.0",
     "@payloadcms/payload-cloud": "3.48.0",
@@ -34,8 +37,8 @@
     "next": "15.3.2",
     "payload": "3.48.0",
     "postcss": "^8.5.6",
-    "react": "19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
     "sharp": "0.34.2",
     "tailwindcss": "4.1.11"
   },
