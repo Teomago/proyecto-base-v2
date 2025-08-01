@@ -26,12 +26,12 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body className="min-w-xs">
-        <Navbar />
-        <HeroUIProvider>
+      <HeroUIProvider>
+        <body className="min-w-xs">
+          <Navbar />
           <main>{children}</main>
-        </HeroUIProvider>
-      </body>
+        </body>
+      </HeroUIProvider>
     </html>
   )
 }

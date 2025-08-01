@@ -1,8 +1,10 @@
+'use client'
+
 import { headers as getHeaders } from 'next/headers.js'
 import Image from 'next/image'
 import { getPayload } from 'payload'
 import React from 'react'
-import { fileURLToPath } from 'url'
+import { Accordion, AccordionItem } from '@heroui/accordion'
 import {
   Card,
   CardHeader,
@@ -14,7 +16,6 @@ import {
   Button,
   Image as HeroUiImage,
 } from '@heroui/react'
-import { Accordion, AccordionItem } from '@heroui/react'
 
 import config from '@/payload.config'
 import './styles.css'
@@ -26,7 +27,10 @@ export default async function HomePage() {
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
 
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  // Removed fileURLToPath usage as 'url' module is not available in Next.js frontend
+  // const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  const defaultContent =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
   return (
     <div className="flex flex-col h-auto h-max-auto max-w-full items-center overflow-hidden bg-black text-white">
@@ -123,7 +127,17 @@ export default async function HomePage() {
         </div>
       </div>
 
-      <div className="2xl:w-full 2xl:h-auto my-8 px-36 flex items-center justify-center"></div>
+      <Accordion>
+        <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
+          {defaultContent}
+        </AccordionItem>
+        <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
+          {defaultContent}
+        </AccordionItem>
+        <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
+          {defaultContent}
+        </AccordionItem>
+      </Accordion>
     </div>
   )
 }
